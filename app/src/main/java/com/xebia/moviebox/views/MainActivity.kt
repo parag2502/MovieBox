@@ -1,7 +1,8 @@
-package com.xebia.moviebox
+package com.xebia.moviebox.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.xebia.moviebox.R
 
 class MainActivity : AppCompatActivity() {
 
