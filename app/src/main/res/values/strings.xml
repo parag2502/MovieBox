@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovieBox</string>
+    <string name="playing_now">Playing now</string>
+    <string name="most_popular">Most popular</string>
+    <string name="not_available">NA</string>
+    <string name="overview">Overview</string>
 </resources>
