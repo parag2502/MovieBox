@@ -14,4 +14,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- Semi Transparent Theme -->
+    <style name="SemiTransparentAppTheme" parent="@android:style/Theme.Translucent">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
