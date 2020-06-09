@@ -5,6 +5,7 @@ import com.xebia.moviebox.models.NowPlayingMovie
 import com.xebia.moviebox.models.PopularMovie
 import com.xebia.moviebox.utils.AppConstants
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -19,9 +20,9 @@ interface MovieService {
 
     @GET("movie/popular")
     fun getPopularMovieData(
+        @Query("page") page: Int,
         @Query("api_key") appId: String = AppConstants.TMDB_API_KEY,
-        @Query("language") lang: String = AppConstants.LANGUAGE,
-        @Query("page") page: String
+        @Query("language") lang: String = AppConstants.LANGUAGE
     ): Observable<PopularMovie>
 
     @GET("movie/{movie_id}")

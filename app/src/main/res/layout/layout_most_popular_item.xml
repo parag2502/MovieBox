@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    android:paddingStart="24dp"
+    android:paddingStart="16dp"
     android:paddingTop="8dp"
-    android:paddingEnd="24dp"
     android:paddingBottom="8dp">
 
     <ImageView
@@ -22,18 +21,19 @@
         android:id="@+id/layout_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left|center"
+        android:layout_marginLeft="12dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pb_rating"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="@+id/pb_rating"
+        app:layout_constraintRight_toLeftOf="@id/iv_poster"
+        app:layout_constraintStart_toEndOf="@+id/iv_poster">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
             android:fontFamily="@font/helvetica_neue_bold"
             android:gravity="start|center"
             android:text="@string/not_available"
@@ -44,7 +44,6 @@
             android:id="@+id/tv_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/helvetica_neue"
             android:gravity="start|center"
@@ -56,7 +55,6 @@
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/helvetica_neue"
             android:gravity="start|center"
@@ -73,10 +71,10 @@
         android:layout_centerInParent="true"
         android:indeterminate="false"
         android:max="100"
-        android:progress="70"
-        android:progressDrawable="@drawable/progress_bar_circular"
+        android:progressDrawable="@drawable/progress_bar_circular_green"
         android:secondaryProgress="100"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_detail"
+        app:layout_constraintRight_toLeftOf="@id/layout_detail"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

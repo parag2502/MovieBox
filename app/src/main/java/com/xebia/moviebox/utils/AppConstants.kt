@@ -11,6 +11,7 @@ class AppConstants {
         // Language
         const val LANGUAGE = "en-US";
 
+        //Key
         const val KEY_MOVIE_ID = "MOVIE_ID";
     }
 }

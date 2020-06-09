@@ -11,7 +11,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-
 class MovieApplication : Application(), HasActivityInjector {
 
     @Inject

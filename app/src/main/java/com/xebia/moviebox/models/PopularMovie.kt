@@ -37,7 +37,7 @@ data class PopularMovie(
         @SerializedName("title")
         val title: String,
         @SerializedName("vote_average")
-        val voteAverage: Int,
+        val voteAverage: String,
         @SerializedName("overview")
         val overview: String,
         @SerializedName("release_date")
