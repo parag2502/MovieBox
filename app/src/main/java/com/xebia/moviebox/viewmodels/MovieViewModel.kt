@@ -11,6 +11,9 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * View Model to handle the movie activity
+ */
 class MovieViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
@@ -21,22 +24,37 @@ class MovieViewModel @Inject constructor(
     lateinit var disposableObserverNowPlayingMovie: DisposableObserver<NowPlayingMovie>
     lateinit var disposableObserverMostPopular: DisposableObserver<PopularMovie>
 
+    /**
+     * Function to return now playing movies response from server
+     */
     fun nowPlayingMoviesResponse(): LiveData<NowPlayingMovie> {
         return nowPlayingMoviesResponse
     }
 
+    /**
+     * Function to return now playing movies error from server
+     */
     fun nowPlayingMoviesError(): LiveData<String> {
         return nowPlayingMoviesError
     }
 
+    /**
+     * Function to return most popular movies response from server
+     */
     fun mostPopularMoviesResponse(): LiveData<PopularMovie> {
         return mostPopularMoviesResponse
     }
 
+    /**
+     * Function to return most popular movies error from server
+     */
     fun mostPopularMoviesError(): LiveData<String> {
         return mostPopularMoviesError
     }
 
+    /**
+     * Function to load now playing movies
+     */
     fun loadNowPlayingMovies() {
         disposableObserverNowPlayingMovie = object : DisposableObserver<NowPlayingMovie>() {
             override fun onComplete() {
@@ -57,6 +75,9 @@ class MovieViewModel @Inject constructor(
             .subscribe(disposableObserverNowPlayingMovie)
     }
 
+    /**
+     * Function to load most popular movies
+     */
     fun loadMostPopularMovies(page: Int) {
         disposableObserverMostPopular = object : DisposableObserver<PopularMovie>() {
             override fun onComplete() {

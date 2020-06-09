@@ -5,11 +5,13 @@ import com.xebia.moviebox.models.NowPlayingMovie
 import com.xebia.moviebox.models.PopularMovie
 import com.xebia.moviebox.utils.AppConstants
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * Interface to handle Retrofit server call
+ */
 interface MovieService {
 
     @GET("movie/now_playing")

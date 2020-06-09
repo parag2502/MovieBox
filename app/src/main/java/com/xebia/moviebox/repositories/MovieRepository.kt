@@ -9,27 +9,36 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    val movieService: MovieService
+    private val movieService: MovieService
 ) {
 
+    /**
+     * Function to get the data of now playing movies
+     */
     fun getNowPlayingMovies(): Observable<NowPlayingMovie> {
         return movieService.getNowPlayingMovieData()
             .doOnNext {
-                Log.e("ResponseNowPlaying API", "${it}");
+                Log.v("ResponseNowPlaying API", "${it}");
             }
     }
 
+    /**
+     * Function to get the data of most popular movies
+     */
     fun getMostPopularMovies(page: Int): Observable<PopularMovie> {
         return movieService.getPopularMovieData(page)
             .doOnNext {
-                Log.e("ResponsePopular API", "${it}");
+                Log.v("ResponsePopular API", "${it}");
             }
     }
 
+    /**
+     * Function to get the details of movie
+     */
     fun getMovieDetail(movieId: Int): Observable<MovieDetail> {
         return movieService.getMovieDetailData(movieId)
             .doOnNext {
-                Log.e("ResponseMovieDetail API", "${it}");
+                Log.v("ResponseMovieDetail API", "${it}");
             }
     }
 }

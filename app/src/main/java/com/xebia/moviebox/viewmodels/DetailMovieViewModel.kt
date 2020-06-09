@@ -10,6 +10,9 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * View Model to handle the movie detail activity
+ */
 class DetailMovieViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
@@ -17,14 +20,23 @@ class DetailMovieViewModel @Inject constructor(
     var detailMoviesError: MutableLiveData<String> = MutableLiveData()
     lateinit var disposableObserverDetailMovie: DisposableObserver<MovieDetail>
 
+    /**
+     * Function to return movie detail response from server
+     */
     fun detailMovieResponse(): LiveData<MovieDetail> {
         return detailMovieResponse
     }
 
+    /**
+     * Function to return movie detail error from server
+     */
     fun detailMoviesError(): LiveData<String> {
         return detailMoviesError
     }
 
+    /**
+     * Function to load movie detail
+     */
     fun loadMovieDetail(movieId: Int) {
         disposableObserverDetailMovie = object : DisposableObserver<MovieDetail>() {
             override fun onComplete() {

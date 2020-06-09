@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.xebia.moviebox.R
 import com.xebia.moviebox.models.PopularMovie
 import com.xebia.moviebox.utils.AppConstants
@@ -20,7 +21,9 @@ class MostPopularMovieAdapter(var _context: Context) :
     private var mostPopularMovieList: ArrayList<PopularMovie.Result> = ArrayList()
     public var context: Context = _context
 
-    //this method is returning the view for each item in the list
+    /**
+     * Function is returning the view for each item in the list
+     */
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -30,16 +33,23 @@ class MostPopularMovieAdapter(var _context: Context) :
         return ViewHolder(v)
     }
 
-    //this method is binding the data on the list
+    /**
+     * Function is binding the data on the list
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(mostPopularMovieList[position])
     }
 
-    //this method is giving the size of the list
+    /**
+     * Function is giving the size of the list
+     */
     override fun getItemCount(): Int {
         return mostPopularMovieList.size
     }
 
+    /**
+     * Function to set movie data
+     */
     fun setMovieData(_nowPlayingMovieList: ArrayList<PopularMovie.Result>) {
         mostPopularMovieList = _nowPlayingMovieList
         notifyDataSetChanged()
@@ -51,23 +61,34 @@ class MostPopularMovieAdapter(var _context: Context) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(popularMovie: PopularMovie.Result) {
+            // Handle Movie Poster ImageView
             val ivMoviePoster = itemView.findViewById(R.id.iv_poster) as ImageView
             val posterUrl = AppConstants.MOVIE_IMAGE_URL + popularMovie.posterPath
             Glide.with(itemView).load(posterUrl)
-                .dontAnimate().fitCenter().into(ivMoviePoster)
+                .placeholder(R.color.colorLightGray).fitCenter()
+                .diskCacheStrategy(
+                    DiskCacheStrategy.ALL
+                ).into(ivMoviePoster)
+            // Handle Movie Title TextView
             val tvTitle = itemView.findViewById(R.id.tv_title) as TextView
             tvTitle.text = popularMovie.title
+            // Handle Movie Release Date TextView
             val tvReleaseDate = itemView.findViewById(R.id.tv_release_date) as TextView
             tvReleaseDate.text = popularMovie.releaseDate
+            // Handle Movie Rating
             val pbRating = itemView.findViewById(R.id.pb_rating) as ProgressBar
             val rating = (popularMovie.voteAverage.toFloat() * 10).toInt()
-            if(rating >= 50){
-                pbRating.progressDrawable = context.getDrawable(R.drawable.progress_bar_circular_green)
+            if (rating >= 50) {
+                pbRating.progressDrawable =
+                    context.getDrawable(R.drawable.progress_bar_circular_green)
             } else {
-                pbRating.progressDrawable = context.getDrawable(R.drawable.progress_bar_circular_yellow)
+                pbRating.progressDrawable =
+                    context.getDrawable(R.drawable.progress_bar_circular_yellow)
             }
             pbRating.progress = rating
-
+            val tvRating = itemView.findViewById(R.id.tv_rating) as TextView
+            tvRating.text = rating.toString()
+            // Handle click event on each item
             itemView.setOnClickListener {
                 val intent = Intent(context, MovieDetailActivity::class.java)
                 intent.putExtra(AppConstants.KEY_MOVIE_ID, popularMovie.id)

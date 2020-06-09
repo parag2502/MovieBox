@@ -9,5 +9,5 @@
     <color name="colorLightGreen">#DCFBDD</color>
     <color name="colorYellow">#FFEB3B</color>
     <color name="colorLightYellow">#F8F5DF</color>
-    <color name="colorSemiTransparent">#99000000</color>
+    <color name="colorSemiTransparent">#CC000000</color>
 </resources>

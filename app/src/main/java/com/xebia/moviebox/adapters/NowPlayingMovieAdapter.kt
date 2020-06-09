@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.xebia.moviebox.R
 import com.xebia.moviebox.models.NowPlayingMovie
 import com.xebia.moviebox.utils.AppConstants
@@ -18,7 +19,9 @@ class NowPlayingMovieAdapter(var _context: Context) :
     private var nowPlayingMovieList: ArrayList<NowPlayingMovie.Result> = ArrayList()
     public var context: Context = _context
 
-    //this method is returning the view for each item in the list
+    /**
+     * Function is returning the view for each item in the list
+     */
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -28,16 +31,23 @@ class NowPlayingMovieAdapter(var _context: Context) :
         return ViewHolder(v)
     }
 
-    //this method is binding the data on the list
+    /**
+     * Function is binding the data on the list
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(nowPlayingMovieList[position])
     }
 
-    //this method is giving the size of the list
+    /**
+     * Function is giving the size of the list
+     */
     override fun getItemCount(): Int {
         return nowPlayingMovieList.size
     }
 
+    /**
+     * Function to set the movie data
+     */
     fun setMovieData(_nowPlayingMovieList: ArrayList<NowPlayingMovie.Result>) {
         nowPlayingMovieList = _nowPlayingMovieList
         notifyDataSetChanged()
@@ -49,10 +59,15 @@ class NowPlayingMovieAdapter(var _context: Context) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(nowPlayingMovie: NowPlayingMovie.Result) {
+            // Handle Movie Poster ImageView
             val ivMoviePoster = itemView.findViewById(R.id.iv_movie) as ImageView
             val posterUrl = AppConstants.MOVIE_IMAGE_URL + nowPlayingMovie.posterPath
             Glide.with(itemView).load(posterUrl)
-                .dontAnimate().fitCenter().into(ivMoviePoster)
+                .placeholder(R.color.colorLightGray).fitCenter()
+                .diskCacheStrategy(
+                    DiskCacheStrategy.ALL
+                ).into(ivMoviePoster)
+            // Handle click event of item
             itemView.setOnClickListener {
                 val intent = Intent(context, MovieDetailActivity::class.java)
                 intent.putExtra(AppConstants.KEY_MOVIE_ID, nowPlayingMovie.id)

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/pb_rating"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_rating"
         app:layout_constraintRight_toLeftOf="@id/iv_poster"
         app:layout_constraintStart_toEndOf="@+id/iv_poster">
 
@@ -31,11 +31,11 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:ellipsize="end"
-            android:maxWidth="200dp"
             android:fontFamily="@font/helvetica_neue_bold"
             android:gravity="start|center"
+            android:maxWidth="200dp"
+            android:maxLines="1"
             android:text="@string/not_available"
             android:textColor="@color/colorLightGray"
             android:textSize="14sp" />
@@ -63,18 +63,38 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/pb_rating"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerInParent="true"
-        android:indeterminate="false"
-        android:max="100"
-        android:progressDrawable="@drawable/progress_bar_circular_green"
-        android:secondaryProgress="100"
+    <RelativeLayout
+        android:id="@+id/layout_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/layout_detail"
-        app:layout_constraintRight_toLeftOf="@id/layout_detail"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/layout_detail">
+
+        <ProgressBar
+            android:id="@+id/pb_rating"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="false"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_circular_green"
+            android:secondaryProgress="100" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pb_rating"
+            android:layout_alignTop="@+id/pb_rating"
+            android:layout_alignRight="@+id/pb_rating"
+            android:layout_alignBottom="@+id/pb_rating"
+            android:fontFamily="@font/helvetica_neue_bold"
+            android:gravity="center"
+            android:textColor="@color/colorLightGray"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
