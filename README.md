@@ -53,5 +53,6 @@ I have written a Expresso Unit test case
 2. For Custom rating view, I have developed custom design for progress bar using RelativeLayout, ProgressBar and TextView
 3. Application is developed in portrait mode only
 4. Minimum Supported versions is 5.0+
+5. Movie Duration is not coming in the PopularMoviesAPI
 
 Thanks
